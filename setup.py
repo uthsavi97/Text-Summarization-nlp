@@ -2,13 +2,13 @@ import setuptools
 
 with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
-    
-    
+
+
 __version__ = "0.0.0"
 
-REPO_NAME = "Text-Summarization-nlp-proj"
+REPO_NAME = "Finance-Complaint"
 AUTHOR_USER_NAME = "uthsavi97"
-SRC_REPO = "textSummarizer"
+SRC_REPO = "FinanceComplaint"
 AUTHOR_EMAIL = "uthsaviyp@gmail.com"
 
 
@@ -17,7 +17,7 @@ setuptools.setup(
     version=__version__,
     author=AUTHOR_USER_NAME,
     author_email=AUTHOR_EMAIL,
-    description="A small python package for NLP app",
+    description="This is a sample for industry ready solution",
     long_description=long_description,
     long_description_content="text/markdown",
     url=f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}",

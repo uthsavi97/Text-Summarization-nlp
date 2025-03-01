@@ -130,3 +130,10 @@ Email: uthsaviyp@gmail.com
 
     ECR_REPOSITORY_NAME = simple-app
 
+
+
+
+
+
+	
+

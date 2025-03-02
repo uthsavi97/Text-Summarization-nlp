@@ -1,4 +1,5 @@
 transformers
+keras==2.15.0
 transformers[sentencepiece]
 datasets
 sacrebleu 

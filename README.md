@@ -1,139 +1,88 @@
-# Text-Summarization-nlp-proj
+# Text Summarization NLP Project
+
+## Project Overview
+This project focuses on **text summarization** using **Natural Language Processing (NLP)** techniques. It leverages **Google Pegasus** for abstractive text summarization and follows a modular workflow to ensure smooth execution, training, evaluation, and deployment of the model.
 
 ## Workflows
+The project follows a structured workflow to ensure reproducibility and maintainability:
 
-1. Update config.yaml
-2. Update params.yaml
-3. Update entity
-4. Update the configuration manager in src config
-5. update the conponents
-6. update the pipeline
-7. update the main.py
-8. update the app.py
+1. **Update `config.yaml`** - Define high-level configurations such as model checkpoints and data sources.
+2. **Update `params.yaml`** - Specify hyperparameters for training and evaluation.
+3. **Update entity** - Define and manage structured data entities used in the pipeline.
+4. **Update the configuration manager in `src/config`** - Manage the configurations dynamically.
+5. **Update the components** - Implement core functionalities for data ingestion, transformation, training, and evaluation.
+6. **Update the pipeline** - Connect various components into a streamlined workflow.
+7. **Update `main.py`** - Implement the execution pipeline.
+8. **Update `app.py`** - Deploy the model using **FastAPI** for real-time inference.
 
+## Requirements
+The project requires the following dependencies:
 
-# How to run?
-### STEPS:
-
-Clone the repository
-
-```bash
-https://github.com/uthsavi97/Text-Summarization-nlp-proj.git
-```
-### STEP 01- Create a conda environment after opening the repository
-
-```bash
-conda create -n textS python=3.11.5 -y
-```
-
-```bash
-conda activate textS
-```
-
-
-### STEP 02- install the requirements
-```bash
-pip install -r requirements.txt
-```
-
-
-```bash
-# Finally run the following command
-python app.py
-```
-
-Now,
-```bash
-open up you local host and port
+```plaintext
+transformers
+keras==2.15.0
+transformers[sentencepiece]
+datasets
+sacrebleu
+rouge_score
+py7zr
+pandas
+nltk
+tqdm
+PyYAML
+matplotlib
+torch
+notebook
+boto3
+mypy-boto3-s3
+python-box
+ensure
+fastapi
+uvicorn
+Jinja2
+evaluate
+-e .
 ```
 
+## Data Processing
+### Data Ingestion
+- The dataset is sourced from: [Summarizer Data](https://github.com/entbappy/Branching-tutorial/raw/master/summarizer-data.zip).
+- Data is downloaded, extracted, and stored in `artifacts/data_ingestion/`.
 
+### Data Transformation
+- Tokenization is performed using `google/pegasus-cnn_dailymail`.
+- Data is processed and prepared for model training.
+
+## Model Training
+- The model is trained using **Google Pegasus**.
+- Training data is stored in `artifacts/model_trainer/`.
+- The trained model is saved and used for inference.
+
+## Model Evaluation
+- The evaluation process calculates metrics such as **ROUGE Score** and **BLEU Score**.
+- Metrics are logged in `artifacts/model_evaluation/metrics.csv`.
+
+## Deployment
+The trained model is deployed using **FastAPI** with the following endpoints:
+
+- **`/train`** - Triggers model training.
+- **`/predict`** - Generates a summary for the provided text input.
+- **`/docs`** - Provides an interactive Swagger UI for testing the API.
+
+## Example Summarization
+
+**Reference Summary:**
+> Hannah needs Betty's number, but Amanda doesn't have it. She needs to contact Larry.
+
+**Model Summary:**
+> Amanda can't find Betty's number. Larry called Betty last time they were at the park together. Hannah wants Amanda to text Larry. Amanda will text Larry.
+
+## Running the Application
+To run the FastAPI server:
 ```bash
-Author: uthsavi 
-Data Scientist
-Email: uthsaviyp@gmail.com
-
+uvicorn app:app --host 0.0.0.0 --port 8080
 ```
 
-
-
-# AWS-CICD-Deployment-with-Github-Actions
-
-## 1. Login to AWS console.
-
-## 2. Create IAM user for deployment
-
-	#with specific access
-
-	1. EC2 access : It is virtual machine
-
-	2. ECR: Elastic Container registry to save your docker image in aws
-
-
-	#Description: About the deployment
-
-	1. Build docker image of the source code
-
-	2. Push your docker image to ECR
-
-	3. Launch Your EC2 
-
-	4. Pull Your image from ECR in EC2
-
-	5. Lauch your docker image in EC2
-
-	#Policy:
-
-	1. AmazonEC2ContainerRegistryFullAccess
-
-	2. AmazonEC2FullAccess
-
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/text-s
-
-	
-## 4. Create EC2 machine (Ubuntu) 
-
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-# 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = simple-app
-
-
-
-
-
-
-	
+## Conclusion
+This project demonstrates the application of **deep learning-based text summarization** using **Google Pegasus**. It follows a structured pipeline for data processing, model training, evaluation, and deployment via FastAPI.
 
